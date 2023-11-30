@@ -1,18 +1,15 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# Sample data for test demostration
-sample_data = {
-    "message": "This is a test API!",
-    "query_params": {"city": "Quibdo", "country": "Colombia"},
-}
 
+@app.route("/weather", methods=["GET"])
+def get_weather():
+    # get query parameters
+    city = request.args.get("city").capitalize()
+    country = request.args.get("country").capitalize()
 
-# Define a route for the root endpoint
-@app.route("/")
-def hello():
-    return jsonify(sample_data)
+    return jsonify({"location_name": f"{city}, {country}"})
 
 
 # Run the app in debug mode.
