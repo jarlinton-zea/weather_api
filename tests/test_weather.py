@@ -14,7 +14,7 @@ def client(app):
     return app.test_client()
 
 
-@pytest.mark.skip(reason="Skip at to complete API functionality")
+@pytest.mark.skip(reason="Skip up to complete API functionalities")
 def test_get_weather(client):
     response = client.get("http://localhost:5000/api/weather?city=condoto&country=co")
     # validate response from the endpoint
