@@ -36,7 +36,6 @@ class Weather(Resource):
         if city and len(country) != 2:
             return {"error": "Country must be two characters long"}, 400
 
-        # TODO: Add logic to request data from external endpoint
         weather_data = self.get_weather_data(city, country)
         # http-response
         return weather_data
@@ -62,5 +61,61 @@ class Weather(Resource):
         except requests.exceptions.RequestException as err:
             raise SystemExit(err)
         else:
+            # format the weather data
+            formatted_weather_data = self.format_weather_data(response.json())
             # Return data from the external API
-            return response.json()
+            return formatted_weather_data
+
+    def format_weather_data(self, weather_data):
+        # import helper functions, only when needed
+        import json
+        from flask import jsonify, Response
+        from .weather_helpers import (
+            get_wind_direction,
+            get_wind_speed_description,
+            timestamp_to_time,
+            get_current_time,
+        )
+
+        # Format data from the external API
+        location_name = f"{weather_data['name']}, {weather_data['sys']['country']}"
+        temperature = f"{weather_data['main']['temp'] - 273.15:.2f} °C / {weather_data['main']['temp'] - 459.67:.2f} °F"
+
+        wind_speed = f"{get_wind_speed_description(weather_data['wind']['speed'])}, {weather_data['wind']['speed']} m/s, {get_wind_direction(weather_data['wind']['deg'])}"
+
+        cloudiness = weather_data["weather"][0]["description"]
+        pressure = f"{weather_data['main']['pressure']} hpa"
+        humidity = f"{weather_data['main']['humidity']}%"
+
+        sunrise = timestamp_to_time(weather_data["sys"]["sunrise"])
+        sunset = timestamp_to_time(weather_data["sys"]["sunset"])
+
+        geo_coordinates = (
+            f"[{weather_data['coord']['lat']:.2f}, {weather_data['coord']['lon']:.2f}]"
+        )
+
+        requested_time = get_current_time()
+
+        formatted_data = {
+            "location_name": location_name,
+            "temperature": temperature,
+            "wind": wind_speed,
+            "cloudiness": cloudiness,
+            "pressure": pressure,
+            "humidity": humidity,
+            "sunrise": sunrise,
+            "sunset": sunset,
+            "geo_coordinates": geo_coordinates,
+            "requested_time": requested_time,
+            "forecast": {},
+        }
+
+        response_data = json.dumps(formatted_data, ensure_ascii=False)
+
+        response_with_headers = Response(
+            response=response_data,
+            status=200,
+            content_type="application/json",
+        )
+
+        return response_with_headers
