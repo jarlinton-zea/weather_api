@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d99bd6e13b173278b5b31022309611c275578426d46751b984b34b7c6f9234af"
+            "sha256": "9155691b0d4d5aacd84ce627793a5c0a2fa0010099daafc416e4682955b5ca1f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,7 +15,8 @@
             }
         ]
     },
-    "default": {
+    "default": {},
+    "develop": {
         "blinker": {
             "hashes": [
                 "sha256:c3f865d4d54db7abc53758a01601cf343fe55b84c1de4e3fa910e420b438d5b9",
@@ -260,6 +261,5 @@
             "markers": "python_version >= '3.8'",
             "version": "==3.0.1"
         }
-    },
-    "develop": {}
+    }
 }
