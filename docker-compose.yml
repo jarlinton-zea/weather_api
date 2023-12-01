@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   weather:
     build:
@@ -11,4 +11,4 @@ services:
     ports:
       - "5000:5000"
     tty: true
-    command: bash -c "python app.py"
+    command: [ "python", "/app/src/run.py" ]

@@ -1,6 +1,9 @@
 from flask import Flask, jsonify, request
+import requests
 
 app = Flask(__name__)
+
+# https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}
 
 
 @app.route("/weather", methods=["GET"])
