@@ -1,4 +1,4 @@
-## Requirements
+### Requirements
 > [Docker Desktop](https://docs.docker.com/)
 
 >**Note**: You can use tools like: [Postman](https://www.postman.com/), and [curl](https://curl.se/) for test the response from the API or any case, use your own web browser, and pass the query parameters by hand. :)
@@ -8,13 +8,13 @@
 
 This project contains a small API implementation that shows one of the many possible ways to implement a RESTful API using Flask and Flask-restful libraries.
 
-
 **Main libraries used:**
-1. Flask - for build web apps.
-2. Flask-RESTful - restful API library.
-3. requests - handle requests to external APIs.
-4. pytest / pytest-flask - Adds unit-test functionalities to the APIs.
-5. python-dotenv - handle enviroments variables.
+0. [Flask framework](https://flask.palletsprojects.com/en/3.0.x/) - build light-way web apps.
+1. [Flask Blueprints](https://flask.palletsprojects.com/en/3.0.x/blueprints/) - for build modular web apps.
+2. [Flask-RESTful](https://flask-restful.readthedocs.io/en/latest/index.html) - restful API library.
+3. [requests](https://pypi.org/project/requests/) - handle requests to external APIs.
+4. [pytest](https://docs.pytest.org/en/7.4.x/) / [pytest-flask](https://pytest-flask.readthedocs.io/en/latest/) - Adds unit-test functionalities to the APIs.
+5. [python-dotenv](https://pypi.org/project/python-dotenv/) - handle enviroments variables.
 
 
 
@@ -68,8 +68,8 @@ This project contains a small API implementation that shows one of the many poss
 4.  Run Docker container after build use: `docker-compose up weather`
 
 
+### USAGE
 
-## Usage
 ### weather endpoint
 [GET] http://127.0.0.1:5000/api/weather?city=istmina&country=co
 
@@ -91,4 +91,17 @@ RESPONSE
 ```
 
 
-Todo endpoint is similar to Users endpoint.
+## Geek resources:
+
+Some interesting posts that teach how to make some of the calculations. That I implement to format the data coming from the external API.
+
+- 💨 [Wind description by speed ](https://www.weather.gov/pqr/wind)
+
+- 💨 [Wind directions](https://windy.app/blog/what-is-wind-direction.html)
+- 💨 [Another Wind directions formula](https://www.ncl.ucar.edu/Document/Functions/Contributed/wind_direction.shtml#:~:text=Wind%20direction%20is%20measured%20in,the%20east%20is%2090%20degrees.)
+
+- [Kelvin to Fahrenheit conversion](https://www.calculatorsoup.com/calculators/conversions/kelvin-to-fahrenheit.php)
+
+- [Kelvin to Celsius conversion](https://www.rapidtables.com/convert/temperature/kelvin-to-celsius.html)
+
+- [Linux timestamp conversion to UTC](https://www.epochconverter.com/)
