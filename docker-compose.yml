@@ -11,4 +11,10 @@ services:
     ports:
       - "5000:5000"
     tty: true
-    command: [ "python", "/app/src/run.py" ]
+    command: [ "python", "src/main.py" ]
+  weather_test:
+    build:
+      context: .
+    command: pytest
+    volumes:
+      - .:/app
