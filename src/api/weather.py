@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from weather_helpers import get_weather_data
+from .weather_helpers import get_weather_data
 
 class Weather(Resource):
     def __init__(self):

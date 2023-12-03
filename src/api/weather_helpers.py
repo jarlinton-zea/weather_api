@@ -1,7 +1,10 @@
+import json
+from flask import Response
 from datetime import datetime, timezone, timedelta
 import requests
 import os
 from dotenv import load_dotenv
+
 
 # load env variables
 load_dotenv()
@@ -142,8 +145,17 @@ def get_current_time():
     return current_datetime
 
 
-def get_weather_data(self, city, country):
+def get_weather_data(city, country):
+    """
+    Returns The incoming unformatted data from the external API call.
 
+    Args:
+    - city (str): city's name.
+    - country (str): country's code, ex: CO, AR, BR, VZ
+
+    Returns:
+    - json : Weather data comming from an external APIs call.
+    """
     try:
         OPENWEATHERMAP_API_KEY = os.getenv("OPENWEATHERMAP_API_KEY")
         OPENWEATHERMAP_API_URL = os.getenv("OPENWEATHERMAP_API_URL")
@@ -165,16 +177,23 @@ def get_weather_data(self, city, country):
         raise SystemExit(err)
     else:
         # format the weather data
-        formatted_weather_data = self.format_weather_data(response.json())
+        formatted_weather_data = format_weather_data(response.json())
         # Return data from the external API
         return formatted_weather_data
 
-def format_weather_data(self, weather_data):
-    # import helper functions, only when needed
-    import json
-    from flask import Response
-   
+def format_weather_data(weather_data):
+    """
+    Returns The weather data for city and country, initially requested to [GET: weather] endpoint.
 
+    Args:
+    - weather_data (dict): Incoming unformatted data from the external API call.
+    
+
+    Returns:
+    - json : Formatted request weather data in human-readable format..
+    """
+    
+    
     # Format data from the external API
     location_name = f"{weather_data['name']}, {weather_data['sys']['country']}"
     temperature = f"{weather_data['main']['temp'] - 273.15:.2f} °C / {weather_data['main']['temp'] - 459.67:.2f} °F"
