@@ -1,6 +1,7 @@
 import pytest
 from src import create_app
-import json
+from datetime import datetime
+from src.api.weather_helpers import get_wind_direction, timestamp_to_time, get_current_time,get_wind_speed_description
 
 
 @pytest.fixture
@@ -14,17 +15,22 @@ def client(app):
     return app.test_client()
 
 
-@pytest.mark.skip(reason="Skip up to complete API functionalities")
+# Test endpoint funcionality
 def test_get_weather(client):
     response = client.get("http://localhost:5000/api/weather?city=condoto&country=co")
     # validate response from the endpoint
     assert response.status_code == 200
-    # load data from the response
-    data = json.loads(response.get_data(as_text=True))
-    assert "location_name" in data
-    """
-    TODO: Modify after complete endpoint functionality
-        assert "country" in data
-        assert data["city"] == "condoto"
-        assert data["country"] == "co"
-    """
+    
+# Test get_wind_direction function
+def test_get_wind_direction():
+    assert get_wind_direction(90) == "East"
+
+# Test timestamp_to_time function
+def test_timestamp_to_time():
+    timestamp = 1701428240
+    expected_result = "05:57:20"
+    assert timestamp_to_time(timestamp) == expected_result
+
+# Test get_wind_speed_description
+def test_get_wind_speed_description():
+    assert get_wind_speed_description(20) == "Gale"

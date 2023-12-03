@@ -47,9 +47,8 @@ This project contains a small API implementation that shows one of the many poss
 
 * tests/ 
     - `src/test/test_weather.py` define test-suits for the endpoint
-    - *TODO: 🛠️* 
-        - we have a single unit-test, that was skiped on the last version of the API.
-        - need to add more test unit-test cases on the entry
+    - *Unit-test: 🛠️* 
+        - Add unit-test cases for testing the functionaly of the helper functions.
 
 **Build**
 
@@ -98,7 +97,6 @@ Some interesting posts that teach how to make some of the calculations. That I i
 - 💨 [Wind description by speed ](https://www.weather.gov/pqr/wind)
 
 - 💨 [Wind directions](https://windy.app/blog/what-is-wind-direction.html)
-- 💨 [Another Wind directions formula](https://www.ncl.ucar.edu/Document/Functions/Contributed/wind_direction.shtml#:~:text=Wind%20direction%20is%20measured%20in,the%20east%20is%2090%20degrees.)
 
 - [Kelvin to Fahrenheit conversion](https://www.calculatorsoup.com/calculators/conversions/kelvin-to-fahrenheit.php)
 
