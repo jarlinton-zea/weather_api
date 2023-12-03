@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_restful import Api
-from .resources import Weather
+from .weather import Weather
 
 # API blueprint
 api_bp = Blueprint("api", __name__)
