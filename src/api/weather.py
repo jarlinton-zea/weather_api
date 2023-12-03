@@ -22,6 +22,44 @@ class Weather(Resource):
         )
 
     def get(self):
+        """
+        Get information about the weather in a specific location like: 'City, Country'.
+        ---
+        parameters:
+          - name: city
+            in: query
+            type: string
+            required: true
+            description: Name of the city, cannot be blank.
+        responses:
+          200:
+            description: Weather data in human-readable format.
+            schema:
+              type: object
+              properties:
+                location_name:
+                  type: string
+                temperature:
+                  type: string
+                wind:
+                  type: string
+                cloudiness:
+                   type: string
+                pressure:
+                   type: string
+                humidity:
+                   type: string
+                sunset:
+                   type: string
+                geo_coordinates:
+                   type: string
+                requested_time:
+                   type: string:
+                forecast:
+                   type: dict
+          400:
+            description: "error": "Country must be two characters long" 
+        """
         args = self.parser.parse_args()
         city = args["city"]
         country = args["country"]
